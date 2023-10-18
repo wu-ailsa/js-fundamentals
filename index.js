@@ -109,21 +109,27 @@ Your goal is to analyze and transform this data such that the output of your pro
 
 
 
-function getLearnerData(CourseInfo, AssignmentGroup, [LearnerSubmission]) {
+function getLearnerData(CourseInfo, AssignmentGroupz, [LearnerSubmission]) {
+
+    if (CourseInfo.id !== AssignmentGroupz.course_id) {
+        throw new Error("The Course ID doesn't match the Assignment Group ID.");
+    }
+
     const learners = [];
     for (const LearnerSub of LearnerSubmission) {
         // console.log(LearnerSub.learner_id); //This shows me a tally of all the learnerSubmission ids 
         
         //precedence, assumption:
         let learnerExists = false;   
-        for(const studentId of learners){
+        for(const student of learners){
             //does this learner exist here already?
-            if (LearnerSub.learner_id == studentId) {
+            if (LearnerSub.learner_id === student.id) {
                 learnerExists = true; 
             } 
         } 
-        if (learnerExists == false) {
-            learners.push(LearnerSub.learner_id);
+        if (learnerExists === false) {
+            let uniqueStudent = {id:LearnerSub.learner_id, assignment_id:[]};
+            learners.push(uniqueStudent);
         }
          
     }

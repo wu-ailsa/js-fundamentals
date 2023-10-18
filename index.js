@@ -78,6 +78,10 @@ const CourseInfo = {
   ];
 
 
+
+
+
+
 /* What you must do:
 
 Your goal is to analyze and transform this data such that the output of your program is an array of objects each containing the following information, in the following format:
@@ -102,6 +106,30 @@ Your goal is to analyze and transform this data such that the output of your pro
 
 /* FUNCTIONS */
 
-function getLearnerData(CourseInfo, AssignmentGroup, [LearnerSubmission]) {
 
+
+
+function getLearnerData(CourseInfo, AssignmentGroup, [LearnerSubmission]) {
+    const learners = [];
+    for (const LearnerSub of LearnerSubmission) {
+        // console.log(LearnerSub.learner_id); //This shows me a tally of all the learnerSubmission ids 
+        
+        //precedence, assumption:
+        let learnerExists = false;   
+        for(const studentId of learners){
+            //does this learner exist here already?
+            if (LearnerSub.learner_id == studentId) {
+                learnerExists = true; 
+            } 
+        } 
+        if (learnerExists == false) {
+            learners.push(LearnerSub.learner_id);
+        }
+         
+    }
+
+    console.log(learners);
 };
+
+
+getLearnerData(CourseInfo,AssignmentGroup,[LearnerSubmissions]);

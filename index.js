@@ -139,20 +139,36 @@ const findStudentAverage = function (student, assignmentList,LearnerSubmission) 
       if (homework.id === assignmentID) {
         denominator += homework.points_possible;
         dueDates.push({
-          id:homework.id, dueDate:homework.s
+          id:homework.id, dueDate:homework.due_at
         })
+
       }
     }
   }
   for (const LearnerSub of LearnerSubmission) {
-    if (LearnerSub.learner_id === student.id) {
-      quotient += LearnerSub.submission.score;
+    let foundDate = null; 
+    for (const dueDateCheck of dueDates) {
+      if (dueDateCheck.id === LearnerSub.assignment_id) {
+        foundDate === dueDateCheck.dueDate;
+      }
     }
+    if (LearnerSub.learner_id === student.id) {
+      if (foundDate > LearnerSub.submitted_at) {
+        //if on time
+      quotient += LearnerSub.submission.score;
+    } else {
+      quotient += (LearnerSub.submission.score*0.9);
+    }
+  }
    } 
 
 
   console.log(quotient, denominator);
+  if (denominator === 0) {
+    return 0; 
+  }
   return quotient / denominator; 
+
 
 };
 

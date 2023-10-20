@@ -78,14 +78,6 @@ const CourseInfo = {
   ];
 
 
-
-
-/* What you must do:
-    // the learner scored on the assignment (submission.score / points_possible)
-    <assignment_id>: number,
-*/  
-
-
 /* FUNCTIONS */
 
 function getLearnerData(CourseInfo, AssignmentGroupz, [LearnerSubmission]) {
@@ -126,7 +118,7 @@ function getLearnerData(CourseInfo, AssignmentGroupz, [LearnerSubmission]) {
     return learners;
 };
 
-// function to find average for student 125
+// function to find average
 const findStudentAverage = function (student, assignmentList,LearnerSubmission) {
   let denominator = 0;
    let quotient = 0;
@@ -163,15 +155,21 @@ const findStudentAverage = function (student, assignmentList,LearnerSubmission) 
    } 
 
 
-  console.log(quotient, denominator);
-  if (denominator === 0) {
-    return 0; 
-  }
+  // console.log(quotient, denominator);
+try {
+  denominator === 0;
+} catch (error) {
+  return 0;
+}
+  // if (denominator === 0) {
+  //   return 0; 
+  // }
+
+
   return quotient / denominator; 
 
 
 };
 
-// function to find average for student 132 
 
 console.log(getLearnerData(CourseInfo,AssignmentGroup,[LearnerSubmissions]));

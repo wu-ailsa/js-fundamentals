@@ -78,6 +78,18 @@ const CourseInfo = {
   ];
 
 
+let scoresStudent132 = []
+let scoresStudent125 = []
+let total = 0
+for (let i = 0; i < scoresArr.length; i++) {
+    total += LearnerSubmissions[i].submission.score
+}
+
+const fetchMeLearnerAvg = (score + score + score)/(pointspossible + pointspossible + pointsposible) 
+(39+140)/(50+150)
+
+
+
 
 
 
@@ -121,21 +133,24 @@ function getLearnerData(CourseInfo, AssignmentGroupz, [LearnerSubmission]) {
         
         //precedence, assumption:
         let learnerExists = false;   
+        //if there is at least one student then you need to compare new assignments to existing studentobjects list, you must run the learner submission through this code directly below...
         for(const student of learners){
             //does this learner exist here already?
             if (LearnerSub.learner_id === student.id) {
                 learnerExists = true; 
+                student.assignment_id.push(LearnerSub.assignment_id);
+                break; //if the student ids match you may exit here
             } 
         } 
         if (learnerExists === false) {
-            let uniqueStudent = {id:LearnerSub.learner_id, assignment_id:[]};
+            let uniqueStudent = {id:LearnerSub.learner_id, assignment_id:[LearnerSub.assignment_id]};
             learners.push(uniqueStudent);
         }
          
     }
 
-    console.log(learners);
+    return learners;
 };
 
 
-getLearnerData(CourseInfo,AssignmentGroup,[LearnerSubmissions]);
+console.log(getLearnerData(CourseInfo,AssignmentGroup,[LearnerSubmissions]));
